@@ -2,22 +2,30 @@ name: AndroidBuild
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: self-hosted
-
     strategy:
       matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version:
+          - 16.x
 
     steps:
+      - name: Setup NVM and Node.js
+        run: |
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 16
+        shell: bash
 
-      - name: Verify Node.js Version
-        run: node -v
+      - name: Verify Node.js and NPM
+        run: |
+          node -v
+          npm -v
+        shell: bash
 
       - name: Checkout
         uses: actions/checkout@v4.1.1
@@ -33,5 +41,5 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.3
         with:
-           name: androidbuild-cicd.apk
-           path: app/build/outputs/apk/debug/app-debug.apk
+          name: androidbuild-cicd.apk
+          path: app/build/outputs/apk/debug/app-debug.apk

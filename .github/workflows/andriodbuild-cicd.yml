@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu
+    runs-on: Centos-7
     
     steps:
 

@@ -15,7 +15,10 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    
+
+      - name: Verify Node.js Version
+        run: node -v
+
       - name: Checkout
         uses: actions/checkout@v4.1.1
 

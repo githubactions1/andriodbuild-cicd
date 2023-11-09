@@ -14,21 +14,9 @@ jobs:
           - 16.x
 
     steps:
-      - name: Setup NVM and Node.js
-        run: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm use 16
-        shell: bash
-
-      - name: Verify Node.js and NPM
-        run: |
-          node -v
-          npm -v
-        shell: bash
 
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.0
 
       - name: Setup Java JDK
         uses: actions/setup-java@v3.13.0
